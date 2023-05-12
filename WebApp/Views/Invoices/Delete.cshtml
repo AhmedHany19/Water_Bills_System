@@ -1,0 +1,97 @@
+﻿@model InvoicesViewModel
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+<section class="content-wrapper">
+
+   @if (ViewData["Message"] == "empty")
+    {
+        <div class="text-center mt-5 warning">
+            <h3 class="text-warning">الرجاء التحقق من رقم الفاتورة  </h3>
+            <a href="/" class="btn btn-primary">  رجوع</a>
+        </div>
+    }
+    else
+    {
+        <h1>حذف الفاتورة</h1>
+        <form asp-action="Delete" method="post">
+            <div class="p-4 rounded border">
+                <div class="form-group row">
+
+                    <div class="col-3">
+                        <label> رقم الفاتورة </label>
+                        <input asp-for="Invoice.Id" class="form-control" readonly />
+                    </div>
+
+                    <div class="col-3">
+                        <label> رقم الاشتراك </label>
+                        <input asp-for="Invoice.Subscribetion_Id" class="form-control" readonly />
+                    </div>
+
+                    <div class="col-3">
+                        <label> هوية المشترك</label>
+                        <input asp-for="Invoice.Subscriber_Id" class="form-control" readonly />
+                    </div>
+
+                    <div class="col-3">
+                        <label> اسم المشترك</label>
+                        <input asp-for="Invoice.Subscriber.Name" class="form-control" readonly />
+                    </div>
+                    <div class="col-3">
+                        <label>القراءة السابقة</label>
+                        <input asp-for="Invoice.Previous_Consumption_Amount" class="form-control" readonly />
+                    </div>
+
+                    <div class="col-3">
+                        <label>القراءة الحالية</label>
+                        <input asp-for="Invoice.Current_Consumption_Amount" class="form-control" readonly />
+                    </div>
+
+
+                    <div class="col-3">
+                        <label>تاريخ الفاتورة</label>
+                        <input asp-for="Invoice.Date" class="form-control" type="datetime" readonly />
+                    </div>
+
+                    <div class="col-3">
+                        <label>من</label>
+                        <input asp-for="Invoice.From" class="form-control" type="date" readonly />
+                    </div>
+
+                    <div class="col-3">
+                        <label>الي</label>
+                        <input asp-for="Invoice.To" class="form-control" type="date" readonly />
+                    </div>
+
+                    <div class="col-3">
+                        <label>الكمية المستهلكة</label>
+                        <input asp-for="Invoice.Amount_Consumption" class="form-control" readonly />
+                    </div>
+                    <div class="col-3">
+                        <label>قيمة الضريبة </label>
+                        <input asp-for="Invoice.Tax_Value" class="form-control" readonly />
+                    </div>
+
+                    <div class="col-3">
+                        <label>اجمالي الفاتورة </label>
+                        <input asp-for="Invoice.Total_Bill" class="form-control" readonly />
+                    </div>
+
+                    <hr>
+                    <div class="text-center col-12 mt-5">
+                        <h2 class="text-danger"> !!!! هل انت متاكد من حذف هذه الفاتورة !!!</h2>
+
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-danger" value="حذف" />
+                            <a asp-action="invoices" class="btn btn-success">رجوع</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </form>
+    }
+   
+</section>

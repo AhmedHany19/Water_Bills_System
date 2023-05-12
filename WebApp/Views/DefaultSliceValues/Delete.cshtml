@@ -1,0 +1,56 @@
+﻿@model Default_Slice_Value
+@{
+    ViewData["Title"] = "Delete";
+}
+
+
+<section class="content-wrapper">
+    <h1>حذف الشريحة</h1>
+    <form asp-action="Delete" method="post">
+        <div class="p-4 rounded border">
+            <div asp-validation-summary="ModelOnly" class="text-danger">
+            </div>
+            <div class="form-group row">
+                <div class="col-7">
+                    <label> الكود</label>
+                    <input asp-for="Id" class="form-control" readonly />
+                </div>
+
+                <div class="col-7">
+                    <label> اسم العقار</label>
+                    <input asp-for="Name" class="form-control" readonly />
+                </div>
+                <div class="col-7">
+                    <label> وصف الشريحة</label>
+                    <input asp-for="Name" class="form-control" readonly />
+                </div>
+
+                <div class="col-7">
+                    <label>كمية استهلاك الشريحة</label>
+                    <input asp-for="Condition" class="form-control" type="number" readonly />
+                </div>
+
+                <div class="col-7">
+                    <label>سعر المتر المكعب من المياة</label>
+                    <input asp-for="Water_Price" class="form-control" type="number" readonly />
+                </div>
+
+                <div class="col-7">
+                    <label>سعر خدمة الصرف الصحي</label>
+                    <input asp-for="Sanitation_Price" class="form-control" type="number" readonly />
+                </div>
+
+                <div class="col-7">
+                    <label> الملاحظات</label>
+                    <input asp-for="Comments" class="form-control" readonly />
+                </div>
+
+            </div>
+            <h2 class="text-danger"> !!!! هل انت متاكد من حذف هذا العقار !!!</h2>
+            <div class="form-group">
+                <input type="submit" class="btn btn-danger" value="تأكـــيد" />
+                <a asp-action="DefaultSliceValues" class="btn btn-success">رجوع</a>
+            </div>
+        </div>
+    </form>
+</section>

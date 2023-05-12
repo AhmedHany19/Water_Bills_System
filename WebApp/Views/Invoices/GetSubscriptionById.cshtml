@@ -1,0 +1,91 @@
+﻿@model InvoicesViewModel
+@{
+    ViewData["Title"] = "GetSubscriptionById";
+}
+
+<section class="content-wrapper">
+   
+    @if (ViewData["Message"] == "empty")
+    {
+        <div class="text-center mt-5 warning">
+            <h3 class="text-warning">الرجاء التحقق من رقم الاشتراك </h3>
+            <a href="/Invoices/RegisterInvoice" class="btn btn-primary">  رجوع</a>
+        </div>
+    }
+    else
+    {
+        <h1>تفاصيل الاشتراك</h1>
+       
+            <div class="p-4 rounded border">               
+                <div class="form-group row">
+                    <div class="col-6">
+                        <label> رقم الاشتراك </label>
+                    <input asp-for="Subscription.Id"  class="form-control" readonly />
+                    </div>
+
+                    <div class="col-6">
+                        <label> هوية المشترك</label>
+                    <input asp-for="Subscription.Subscriber.Id" class="form-control" readonly />
+                    </div>
+
+                     <div class="col-6">
+                        <label> اسم المشترك</label>
+                    <input asp-for="Subscription.Subscriber.Name" class="form-control" readonly />
+                    </div>
+                    <div class="col-6">
+                        <label>  المدينة</label>
+                    <input asp-for="Subscription.Subscriber.City" class="form-control" readonly />
+                    </div>
+
+                    <div class="col-6">
+                        <label>القراءة السابقة</label>
+                    <input asp-for="Subscription.Last_Reading_Meter" class="form-control" type="number" readonly />
+                    </div>
+
+                    <div class="col-6">
+                        <label>هل يوجد صرف صحي ! </label>
+                    <input asp-for="Subscription.Is_There_Sanitation" class="form-control" hidden />
+                        @if (Model.Subscription.Is_There_Sanitation)
+                        {
+                            <input class="form-control" value="يوجد" readonly />
+
+                        }
+                        else
+                        {
+                            <input class="form-control" value=" لا يوجد" readonly />
+                        }
+                    </div>
+
+                    <div class="col-6">
+                        <label>العقار</label>
+                    <input asp-for="Subscription.Real_Estate_Type.Name" class="form-control" type="text" readonly />
+                    </div>
+
+                    <div class="col-6">
+                        <label> عدد الوحدات </label>
+                    <input asp-for="Subscription.No" class="form-control" readonly />
+                    </div>
+                    <hr>             
+                </div>
+
+
+
+                <div>
+                     <form asp-action="Create" asp-controller="Invoices" method="post">
+                        <input asp-for="Subscription.Id" name="subscribtionId" hidden>                     
+                        <div class="col-10 mt-5 offset-1 text-center">
+                            <label> للتسجيل ادخل قراءة العداد الحالية</label>
+                        <input asp-for="Invoice.Current_Consumption_Amount" class="form-control" />
+                        </div>
+                        <div class="form-group text-center mt-3">
+                            <input type="submit" class="btn btn-primary" value="ادخال القيمة" />
+                            <a href="/" class="btn btn-success">رجوع</a>
+                        </div>
+                     </form>
+                </div>
+
+        </div>
+    }
+
+</section>
+

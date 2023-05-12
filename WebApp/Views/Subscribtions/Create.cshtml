@@ -1,0 +1,71 @@
+﻿@model SubscribtionsViewModel
+@{
+    ViewData["Title"] = "Add Subscribtion";
+}
+
+
+<section class="content-wrapper">
+    <h1>اضافة اشتراك جديد</h1>
+
+    <form asp-controller="Subscribtions" asp-action="Create" method="post">
+        <div class="p-4 rounded border">
+            <div asp-validation-summary="All" class="text-danger">
+            </div>
+            <h4 class="text-warning">@ViewData["Message"]</h4>
+            <div class="form-group row">
+
+                @*<div class="col-7">
+                    <label> رقم الاشتراك</label>
+                    <input asp-for="Subscription.Id" class="form-control" type="text" />
+                    <span asp-validation-for="Subscription.Id" class="text-danger"></span>
+                </div>*@
+
+                <div class="col-7">
+                    <label> المشترك</label>
+                    <select asp-for="Subscription.Subscriber_Id" asp-items="@(new SelectList(Model.Subscribers, "Id", "Name"))" class="form-control form-select"></select>
+                    <span asp-validation-for="Subscription.Subscriber_Id" class="text-danger"></span>
+                </div>
+
+                <div class="col-7">
+                    <label>نوع العقار</label>
+                    <select asp-for="Subscription.Real_State_Id" asp-items="@(new SelectList(Model.Real_Estate_Types, "Id", "Name"))" class="form-control form-select"></select>
+                    <span asp-validation-for="Subscription.Real_State_Id" class="text-danger"></span>
+                </div>
+
+                <div class="col-7">
+                    <label>عدد الوحدات</label>
+                    <input asp-for="Subscription.No" class="form-control" type="text" />
+                    <span asp-validation-for="Subscription.No" class="text-danger"></span>
+                </div>
+
+                <div class="col-7">
+                    <label>هل يوجد صرف صحي ؟</label>
+                    <input asp-for="Subscription.Is_There_Sanitation" class="form-control" type="checkbox" />
+                    <span asp-validation-for="Subscription.Is_There_Sanitation" class="text-danger"></span>
+                </div>
+
+                <div class="col-7">
+                    <label> اخر قراءة للعداد</label>
+                    <input asp-for="Subscription.Last_Reading_Meter" class="form-control" type="number" />
+                    <span asp-validation-for="Subscription.Last_Reading_Meter" class="text-danger"></span>
+                </div>
+                <div class="col-7">
+                    <label> ملاحظات</label>
+                    <textarea asp-for="Subscription.Comments" class="form-control" row="4"></textarea>
+                    <span asp-validation-for="Subscription.Comments" class="text-danger"></span>
+                </div>
+
+            </div>
+            <div class="form-group">
+                <input type="submit" class="btn btn-primary" value="اضافة" />
+                <a asp-action="Subscribtions" class="btn btn-success">رجوع</a>
+            </div>
+        </div>
+    </form>
+</section>
+
+@section Scripts{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }

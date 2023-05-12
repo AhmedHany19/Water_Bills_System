@@ -1,0 +1,44 @@
+﻿@model Real_Estate_Type
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<section class="content-wrapper">
+    <h1>تعديل العقار</h1>
+   <form asp-action="Edit" method="post">
+    <div class="p-4 rounded border">
+        <div asp-validation-summary="ModelOnly" class="text-danger">
+        </div>
+        <div class="form-group row">
+            <div class="col-7">
+                <label> الكود</label>
+                 <input asp-for="Id" class="form-control" />
+                <span asp-validation-for="Id" class="text-danger"></span>
+            </div>
+
+            <div class="col-7">
+            <label> اسم العقار</label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <div class="col-7">
+             <label> الملاحظات</label>
+             <input asp-for="Comments" class="form-control" />
+             <span asp-validation-for="Comments" class="text-danger"></span>
+            </div>
+
+        </div>
+        <div class="form-group">
+            <input type="submit" class="btn btn-primary" value="تعديل" />
+            <a asp-action="RealEstateType" class="btn btn-success">رجوع</a>
+        </div>
+    </div>
+</form>
+</section>
+
+@section Scripts{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }

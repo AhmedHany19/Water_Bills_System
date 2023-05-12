@@ -1,0 +1,76 @@
+﻿@model SubscribtionsViewModel
+@{
+    ViewData["Title"] = "Edit Subscribtion";
+}
+
+
+<section class="content-wrapper">
+    <h1> تعديل الاشتراك</h1>
+
+    <form asp-controller="Subscribtions" asp-action="Edit" method="post">
+             @Html.AntiForgeryToken()
+            <div asp-validation-summary="All" class="text-danger">
+            </div>
+            <h4 class="text-warning">@ViewData["Message"]</h4>
+            <div class="form-group row">
+
+                <div class="col-7">
+                    <label> رقم الاشتراك</label>
+                    <input asp-for="Subscription.Id" class="form-control" readonly />
+                </div>
+                <div class="col-7">
+                    <label> رقم المشترك</label>
+                    <input asp-for="Subscription.Subscriber_Id" class="form-control"  readonly />
+                </div>
+                <div class="col-7">
+                    <label> اسم المشترك</label>
+                    <input asp-for="Subscription.Subscriber.Name" class="form-control" readonly >
+                </div>       
+                <div class="col-7">
+                    <label> المدينة</label>
+                    <input asp-for="Subscription.Subscriber.City" class="form-control" readonly>
+                </div>
+                <div class="col-7">
+                    <label> الحي</label>
+                    <input asp-for="Subscription.Subscriber.Area" class="form-control" readonly>
+                </div>
+                <div class="col-7">
+                    <label> الجوال</label>
+                    <input asp-for="Subscription.Subscriber.Mobile" class="form-control" readonly>
+                </div>            
+                <div class="col-7">
+                    <label>نوع العقار</label>
+                    <select asp-for="Subscription.Real_State_Id" asp-items="@(new SelectList(Model.Real_Estate_Types, "Id", "Name"))" class="form-control form-select"></select>
+                </div>
+
+                <div class="col-7">
+                    <label>عدد الوحدات</label>
+                    <input asp-for="Subscription.No" class="form-control" type="text" />
+                    <span asp-validation-for="Subscription.No" class="text-danger"></span>
+                </div>
+
+                <div class="col-7">
+                    <label>هل يوجد صرف صحي ؟</label>
+                    <input asp-for="Subscription.Is_There_Sanitation" class="form-control" type="checkbox" />
+                    <span asp-validation-for="Subscription.Is_There_Sanitation" class="text-danger"></span>
+                </div>
+                <div class="col-7">
+                    <label> ملاحظات</label>
+                    <textarea asp-for="Subscription.Comments" class="form-control" row="4"></textarea>
+                    <span asp-validation-for="Subscription.Comments" class="text-danger"></span>
+                </div>
+
+            </div>
+            <div class="form-group">
+                <input type="submit" class="btn btn-primary" value="تعديل" />
+                <a asp-action="Subscribtions" class="btn btn-success">رجوع</a>
+            </div>
+        </div>
+    </form>
+</section>
+
+@section Scripts{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }
